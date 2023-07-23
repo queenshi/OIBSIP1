@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array-Manipulators</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <style>
+      body {
+        background-image: url("../public/assets/Cup\ Illustrations\ Series\ by\ Uyoo.png");
+
+        background-repeat: repeat;
+      }
+      legend {
+        color: white;
+        text-decoration:underline;
+      }
+
+      .main-title {
+        font-family: arial;
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+
+        color: bisque;
+      }
+    </style>
+    <script>
+      var cities = ["Write How you feel", "Going to Gym", "Drink Warm Tea","laundry Bag","Listen one podcast","Read Newspaper"];
+      function loadCities() {
+        document.getElementById("lstCategories").innerHTML="";
+        for (var city of cities) {
+          var option = document.createElement("option");
+          option.text = city;
+          document.getElementById("lstCategories").appendChild(option);
+        }
+      }
+
+      function bodyLoad() {
+        loadCities();
+      }
+      function addClick(){
+        var cityname =document.getElementById("txtCity").value;
+        cities.push(cityname);
+
+        alert(`${cityname} is added `);
+        loadCities();
+        document.getElementsById("txtCity").value=" ";
+
+      }
+      function removeClick(){
+        var selectedCityName= document.getElementById("lstCategories").value;
+        var selectedCityIndex= cities.indexOf(selectedCityName);
+       alert(`${cities.splice(selectedCityIndex,1)} is removed`);
+       loadCities();
+      }
+    </script>
+  </head>
+  <body class="container-fluid" onload="bodyLoad()">
+    <h1 class="text-center bg-danger text-white">Create Your Task List</h1>
+    <div class="row">
+      <div class="conatiner">
+        <fieldset>
+          <legend>
+            <marquee
+              scrollamount="20"
+              behavior="alternate"
+              bgcolor="orange"
+              width="100%"
+              height="100%"
+            >
+              Today's To-Do List
+            </marquee>
+          </legend>
+          <h2 class="main-title">
+            Add Your task
+            <span class="bi bi-chevron-right"></span>
+          </h2>
+
+          <div class="input-group">
+            <input type="text" id="txtCity" class="form-control" />
+            <button onclick="addClick()" class="btn btn-primary">Add</button>
+          </div>
+        </fieldset>
+      </div>
+
+    <div>
+      <h3 class="main-title">
+        Task List
+        <span class="bi bi-chevron-right"></span>
+      </h3>
+      <div class="input-group">
+        <select class="form-select" id="lstCategories">
+
+        </select>
+
+        <button onclick="removeClick()" class="btn btn-danger">Remove Task</button>
+      </div>
+     
+    </div>
+  </body>
+</html>
