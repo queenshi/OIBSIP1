@@ -38,19 +38,27 @@
           document.getElementById("lstCategories").appendChild(option);
         }
       }
+      function addClick(){
+        var cityname =document.getElementById("txtCity").value;
+        var cityIndex =  cities.indexOf(cityname);
+        if(cityIndex==-1){
+          cities.push(cityname);
+
+        alert(`${cityname} is added `);
+        loadCities();
+        document.getElementById("txtCity").value=" ";
+      }
+      else{
+        alert("task already exists-try an0there task");
+      }
+
+        
+      }
 
       function bodyLoad() {
         loadCities();
       }
-      function addClick(){
-        var cityname =document.getElementById("txtCity").value;
-        cities.push(cityname);
-
-        alert(`${cityname} is added `);
-        loadCities();
-        document.getElementsById("txtCity").value=" ";
-
-      }
+      
       function removeClick(){
         var selectedCityName= document.getElementById("lstCategories").value;
         var selectedCityIndex= cities.indexOf(selectedCityName);
